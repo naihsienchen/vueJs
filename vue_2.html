@@ -12,16 +12,17 @@
 	<body>
 	
 	<div id="app">
-		<span v-bind:class="{special:true, important:isImportant}">
+		<span v-bind:class="{special:isSpecial, important:isImportant}">
 			look at me!
 		</span>
 	</div>
-	
+
 	<script>
 	var app = new Vue({
 		el: '#app',
 		data:{
-			isImportant:true
+			isImportant:true,
+			isSpecial:false
 		}
 	});
 	</script>
