@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>v-for Loops</title>
+		<meta charset="UTF-8">
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<style>
+			ul {list-style-type:none;}
+			ul li{marign-bottom:20px;}
+			.MACBETH p {color: blue;}
+			.LADY p {color: red;}
+		</style>
+	</head>
+	<body>
+	
+	<div id="app">
+		<ul>
+			<li v-for="part in scene">
+				<div class="MACBETH" v-if='part.character === "MACBETH"'>
+					<span>{{part.character}}</span>
+					<p v-for="a_dialogue in part.dialogue">{{a_dialogue.line}}</p>
+				</div>
+				<div class="LADY" v-if='part.character === "LADY MACBETH"'>
+					<span>{{part.character}}</span>
+					<p v-for="a_dialogue in part.dialogue">{{a_dialogue.line}}</p>
+				</div>
+			</li>
+		</ul>
+	</div>
+	
+	<script>
+	var app = new Vue({
+		el: '#app',
+		
+		data:{
+			//Scene from http://shakespeare.mit.edu/macbeth/macbeth.1.7.html
+			scene:[
+				//{character:'MACBETH', dialogue:"Hath he ask'd for me?"},
+				{
+					character:'MACBETH', 
+					dialogue:[
+						{line: "Hath he ask'd for me?"}
+					]
+				},
+				//{character:'LADY MACBETH', dialogue:"Know you not he has?"},
+				{character:'LADY MACBETH', dialogue:[
+					{line: "Know you not he has?"}
+				]},
+				
+				//{character:'MACBETH', dialogue:"We will proceed no further in this business:\nHe hath honour'd me of late; and I have bought\nGolden opinions from all sorts of people,\nWhich would be worn now in their newest gloss,\nNot cast aside so soon."},
+				{character:'MACBETH', dialogue:[
+					{line: "We will proceed no further in this business:"}, 
+					{line: "He hath honour'd me of late; and I have bought"}, 
+					{line: "Golden opinions from all sorts of people,"},  
+					{line: "Which would be worn now in their newest gloss,"}, {line: "Not cast aside so soon."}
+				]},
+				{character:'LADY MACBETH', dialogue:[
+					{line: "Was the hope drunk"}, 
+					{line: "Wherein you dress'd yourself? hath it slept since?"}, 
+					{line: "And wakes it now, to look so green and pale"}, 
+					{line: "At what it did so freely? From this time"}, 
+					{line: "Such I account thy love. Art thou afeard"}, 
+					{line: "To be the same in thine own act and valour"}, 
+					{line: "As thou art in desire? Wouldst thou have that"}, 
+					{line: "Which thou esteem'st the ornament of life,"}, 
+					{line: "And live a coward in thine own esteem,"}, 
+					{line: "Letting 'I dare not' wait upon 'I would,'"}, {line: "Like the poor cat i' the adage?"}
+				]},
+				{character:'MACBETH', dialogue:[
+					{line: "Prithee, peace:"}, 
+					{line: "I dare do all that may become a man;"}, 
+					{line: "Who dares do more is none."}
+				]}
+			]
+			//Next line
+			//MACBETH
+
+		    //Prithee, peace:
+		    //I dare do all that may become a man;
+		    //Who dares do more is none.
+		}
+		
+	});
+	</script>
+	
+		<!--
+		//step 1: Run the code above!
+		
+		v-for="singular in plural"		
+		
+		You can also render loops using vue.js. The syntax used is a "foreach" style.
+		plural must be defined somewhere. In our case it's as a data property
+		singular is defined on the fly.
+		
+		
+		ASYNCHRONOUS LEARNING EXERCISE
+		1. Add the next line through the console using app.scene.push() in the console
+		2. Use v-if to style the text. Red if Macbeth is speaking, blue if Lady Macbeth
+		3. The lines are separated by \n. Can you re-structure the data and logic so that the dialogue has many lines, each line separate?
+		
+		-->
+	</body>
+</html>

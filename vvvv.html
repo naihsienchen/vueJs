@@ -1,0 +1,45 @@
+
+<!--SOURCE: https://stackoverflow.com/questions/37534249/nested-arrays-of-objects-and-v-for-->
+
+  <script src="https://cdn.jsdelivr.net/vue/latest/vue.js"></script>
+  <div id="sample">
+  <table>
+    <tr>
+      <th>Folder</th>
+      <th>Checks</th>
+      <th>Checks</th>
+    </tr>
+    <tr v-if = "private.folders!=null" v-for="folder in private.folders">
+    <td><b>{{folder.name}}</b></td>
+        <td v-for="check in folder.checks">
+           {{check.name}}
+        </td>
+    </tr>
+  </table>
+  </div>
+
+  <script>
+      new Vue({
+    el: '#sample',
+    data: {
+      private: {
+        folders : [{
+            name : 'folder1',
+            checks : [
+              { name : 'check1.1' },
+              { name : 'check1.2' }
+            ]
+          },
+          {
+            name : 'folder2',
+            checks : [
+              { name : 'check2.1' },
+              { name : 'check2.2' }
+            ]
+          }
+        ]
+      }
+    }
+  })
+
+  </script>

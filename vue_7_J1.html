@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>J1 Practice</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<style>
+			.formfield{margin-bottom:10px;}
+		</style>
+	</head>
+	<body>
+	<p>Water Boiling Problem. <a href="https://cemc.uwaterloo.ca/contests/computing/2021/index.html">from the J1 problem hosted by the CCC.</a></p>
+	<div id="app">
+		<div class="formfield">
+			<label>Boiling point: <label> <input v-model="B">
+		</div>
+		<div id="result">
+			<div><label>show diagnostics:</label>
+			<span v-if="above_sea === true">1 (Above sea level). atmospheric pressure of {{kPa}} kPa.</span>
+			<span v-else-if="below_sea === true">-1. You are below sea level, with atmospheric pressure of {{kPa}} kPa.</span>
+			<span v-else="at_sea === true">0. You are at sea level.</span>
+		</div>
+	</div>
+	<script>
+		
+	var app = new Vue({
+		el: '#app',
+		data:{
+			B:0,
+		},
+		computed:{
+			kPa:function(){
+				return (5 * this.B - 400);	
+			},
+			above_sea:function(){
+				return this.kPa<100;	
+			},
+			below_sea:function(){
+				return this.kPa>100;	
+			},
+			at_sea:function(){
+				return this.kPa=100;	
+			}
+		}
+	});
+	
+	</script>
+	<!--
+		v-model will allow you to quickly bind form elements to the data property.
+		Make sure to set a default value!
+		The Computed property can be used like data, except for values that are calculated from data properties.
+		In this example 'treat_total' is computed from data properties, and 'is_happy' is computed from 'treat_total'.
+		
+		ASYNCHRONOUS LEARNING EXERCISE : J1
+		- Find any J1 problem
+		- Imagine an interface that allows the user to enter data on the webpage
+		- Build using v-model and computed properties!
+	
+	-->
+	</body>
+</html>
